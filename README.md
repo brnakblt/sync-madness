@@ -40,7 +40,7 @@ Ensure you have the following installed:
 *   **Wallpaper Manager:** `dms` (Internal/Custom Tool)
 *   **CLI Tools:**
     *   [`fastfetch`](https://github.com/fastfetch-cli/fastfetch)
-    *   [`pokeget`](https://github.com/talwat/pokeget)
+    *   [`pokeget-rs`](https://github.com/talwat/pokeget-rs)
     *   [`cmatrix`](https://github.com/abishekvashok/cmatrix)
     *   [`cava`](https://github.com/karlstav/cava)
 
