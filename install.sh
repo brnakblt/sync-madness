@@ -7,9 +7,10 @@ echo -e "\033[1;35mSync-Madness Kurulum Sihirbazına Hoş Geldiniz!\033[0m"
 
 # 1. DMS Kontrolü
 if ! command -v dms &> /dev/null; then
-    echo -e "\033[1;33mUYARI: 'dms' (Desktop Management System) sisteminizde bulunamadı.\033[0m"
-    echo "Bu paket, duvar kağıdı yönetimi için 'dms' ye ihtiyaç duyar."
-    echo "Lütfen önce DMS kurulum scriptini çalıştırdığınızdan emin olun."
+    echo -e "\033[1;31mHATA: 'dms' (DankMaterialShell) sisteminizde bulunamadı.\033[0m"
+    echo "Bu paket, tema senkronizasyonu için DMS'e ihtiyaç duyar."
+    echo -e "Lütfen önce şu adresten kurulumu yapın: \033[1;34mhttps://github.com/AvengeMedia/DankMaterialShell\033[0m"
+    echo ""
     read -p "Yine de devam etmek istiyor musunuz? (e/H) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Ee]$ ]]; then

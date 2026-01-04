@@ -2,6 +2,12 @@
 
 **Sync-Madness**, Linux sisteminizin temasını gerçek zamanlı olarak duvar kağıdınızla senkronize eden kapsamlı bir otomasyon paketidir. `matugen` kullanarak renkleri ayıklar ve bunları pencere yöneticinizden terminalinize, CLI araçlarınızdan klavye aydınlatmanıza kadar her yere uygular.
 
+## Onemli Onkosul
+
+Bu paketin calismasi icin **DankMaterialShell (DMS)** sisteminizde kurulu olmalidir. Eger kurulu degilse, lutfen once onu kurun:
+
+[https://github.com/AvengeMedia/DankMaterialShell](https://github.com/AvengeMedia/DankMaterialShell)
+
 ## Ozellikler
 
 *   **Dinamik Duvar Kagidi Motoru:** Duvar kağıdını değiştirir ve anında sistem genelinde tema güncellemesini tetikler.
