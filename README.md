@@ -103,7 +103,7 @@ Aşağıdakilerin yüklü olduğundan emin olun:
     matrix
     ```
 
-## Nasil Calisir? (Arkaplandaki Mantik)
+## Nasil Calisir?
 
 `wp` komutunu çalıştırdığınızda bir zincirleme reaksiyon başlar:
 
