@@ -31,16 +31,37 @@ else
     exit 1
 fi
 
-echo -e "\033[1;34m:: Temel bağımlılıklar kuruluyor...\033[0m"
-$AUR_HELPER -S --needed python jq fastfetch cmatrix cava matugen-bin pokeget
+echo -e "\033[1;34m:: Resmi depolardaki paketler kuruluyor (pacman)...\033[0m"
+sudo pacman -S --needed python jq fastfetch cmatrix cava
 
-# 3. ASUS ROG Kontrolü (İsteğe Bağlı)
+echo -e "\033[1;34m:: AUR paketleri kuruluyor ($AUR_HELPER)...\033[0m"
+$AUR_HELPER -S --needed matugen-bin
+
+# 3. Pokeget Kurulumu (Cargo Önerilir)
+echo
+if command -v cargo &> /dev/null; then
+    read -p "Pokeget'i Cargo ile kurmak ister misiniz? (Önerilen) (E/h) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Hh]$ ]]; then
+        echo ":: Pokeget kuruluyor (cargo)..."
+        cargo install pokeget
+        echo -e "\033[1;33mNOT: ~/.cargo/bin dizininin PATH'e eklendiğinden emin olun!\033[0m"
+    else
+        echo ":: Pokeget kuruluyor ($AUR_HELPER)..."
+        $AUR_HELPER -S --needed pokeget
+    fi
+else
+    echo ":: Cargo bulunamadı, Pokeget $AUR_HELPER ile kuruluyor..."
+    $AUR_HELPER -S --needed pokeget
+fi
+
+# 4. ASUS ROG Kontrolü (İsteğe Bağlı)
 echo
 read -p "ASUS ROG serisi bir laptop kullanıyor musunuz? (Klavye ışık senkronizasyonu için) (e/H) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Ee]$ ]]; then
     echo -e "\033[1;34m:: asusctl kuruluyor...\033[0m"
-    $AUR_HELPER -S --needed asusctl
+    sudo pacman -S --needed asusctl
 else
     echo ":: asusctl kurulumu atlandı."
 fi
