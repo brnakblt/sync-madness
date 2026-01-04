@@ -45,18 +45,32 @@ Varsayılan olarak script şu dizindeki görsellere bakar:
     ```
 
 ### 2. Gereksinimler
-Aşağıdakilerin yüklü olduğundan emin olun:
-*   **Cekirdek:** `python3`, `jq`, `bash`
-*   **Temalandirma:** [`matugen`](https://github.com/InioX/matugen)
-*   **Duvar Kagidi Yoneticisi:** `dms` (Dahili/Özel Araç - gerekirse `swww` veya `hyprpaper` ile değiştirin)
-*   **Donanim:** `asusctl` (İsteğe bağlı, ROG laptoplar için)
-*   **CLI Araclari:**
-    *   [`fastfetch`](https://github.com/fastfetch-cli/fastfetch)
-    *   [`pokeget-rs`](https://github.com/talwat/pokeget-rs)
-    *   [`cmatrix`](https://github.com/abishekvashok/cmatrix)
-    *   [`cava`](https://github.com/karlstav/cava)
+*   **Temel:** `dms` (Sisteminizde kurulu olmalıdır)
+*   **Bagimliliklar:** `python3`, `jq`, `matugen`, `fastfetch`, `pokeget`, `cmatrix`, `cava` (Otomatik kurulur)
+*   **Opsiyonel:** `asusctl` (ROG laptoplar icin)
 
-### 3. Kurulum
+### 3. Kurulum (Otomatik)
+
+En kolay kurulum icin repo icindeki scripti calistirin. Bu script bagimliliklari kuracak, scriptleri yerlestirecek ve ayarlari yapacaktir.
+
+> **Onemli:** Bu paketi kurmadan once `dms` kurulumunu tamamlamis olmaniz onerilir.
+
+1.  **Scripti Calistirin:**
+    ```bash
+    chmod +x install.sh
+    ./install.sh
+    ```
+
+2.  **Shell Alias'lari:**
+    Kurulum bittikten sonra `.bashrc` veya `.zshrc` dosyanıza sunlari ekleyin:
+    ```bash
+    alias wp='$HOME/Scripts/Wallpaper/wp_switch.sh'
+    alias ff='$HOME/Scripts/Coolstf/pokemon.sh -l'
+    alias matrix='$HOME/Scripts/Coolstf/cmatrix_runner.sh'
+    ```
+
+### 4. Manuel Kurulum
+Eger otomatik scripti kullanmak istemezseniz:
 1.  **Scriptleri Kopyalayin:**
     ```bash
     cp -r scripts/* ~/Scripts/
@@ -64,13 +78,6 @@ Aşağıdakilerin yüklü olduğundan emin olun:
 2.  **Dotfile'lari Baglayin (Symlink):**
     ```bash
     ln -s $(pwd)/dotfiles/* ~/.config/
-    ```
-3.  **Shell Alias'lari:**
-    `.bashrc` veya `.zshrc` dosyanıza ekleyin:
-    ```bash
-    alias wp='$HOME/Scripts/Wallpaper/wp_switch.sh'
-    alias ff='$HOME/Scripts/Coolstf/pokemon.sh -l'
-    alias matrix='$HOME/Scripts/Coolstf/cmatrix_runner.sh'
     ```
 
 ## Kullanim
