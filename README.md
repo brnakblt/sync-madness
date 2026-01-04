@@ -1,119 +1,119 @@
-# Sync-Madness: Theme Synchronization Suite
+# Sync-Madness: Tema Senkronizasyon Paketi
 
-**Sync-Madness** is a comprehensive automation suite for Linux that synchronizes your entire system's theme to your wallpaper in real-time. It leverages `matugen` to extract colors and applies them across your window manager, terminal, CLI tools, and even your keyboard lighting.
+**Sync-Madness**, Linux sisteminizin temasını gerçek zamanlı olarak duvar kağıdınızla senkronize eden kapsamlı bir otomasyon paketidir. `matugen` kullanarak renkleri ayıklar ve bunları pencere yöneticinizden terminalinize, CLI araçlarınızdan klavye aydınlatmanıza kadar her yere uygular.
 
-## 🚀 Features
+## 🚀 Özellikler
 
-*   **Dynamic Wallpaper Engine:** Switches wallpapers and instantly triggers system-wide theme updates.
-*   **Terminal Sync:**
-    *   **Fastfetch (`ff`):** Displays a random Pokémon that matches your wallpaper's color scheme (e.g., Red wallpaper -> Charizard).
-    *   **Matrix (`matrix`):** Runs `cmatrix` with the color closest to your wallpaper.
-*   **App Integration:**
-    *   **Cava:** Audio visualizer colors are hot-reloaded.
-    *   **Ghostty:** Terminal emulator config sync.
-    *   **Nvim & Yazi:** Editor and file manager theme integration.
-    *   **Niri:** Window manager border and UI coloring.
-    *   **ASUS ROG:** Keyboard Aura sync (via `asusctl`).
+*   **Dinamik Duvar Kağıdı Motoru:** Duvar kağıdını değiştirir ve anında sistem genelinde tema güncellemesini tetikler.
+*   **Terminal Entegrasyonu:**
+    *   **Fastfetch (`ff`):** Duvar kağıdınızın renk şemasına uygun rastgele bir Pokémon gösterir (Örn: Kırmızı duvar kağıdı -> Charizard).
+    *   **Matrix (`matrix`):** `cmatrix` uygulamasını duvar kağıdınıza en yakın renkte çalıştırır.
+*   **Uygulama Senkronizasyonu:**
+    *   **Cava:** Ses görselleştirici renkleri anında güncellenir (hot-reload).
+    *   **Ghostty:** Terminal emülatörü yapılandırma senkronizasyonu.
+    *   **Nvim & Yazi:** Editör ve dosya yöneticisi tema entegrasyonu.
+    *   **Niri:** Pencere yöneticisi kenarlık ve arayüz renklendirmesi.
+    *   **ASUS ROG:** Klavye Aura senkronizasyonu (`asusctl` ile).
 
-## 📂 Directory Structure
+## 📂 Dizin Yapısı
 
 ```text
 ├── scripts/
-│   ├── wallpaper/   # The brain (wp_switch.sh)
-│   ├── utils/       # The intelligence (pokemon_theme_manager.py, color tools)
-│   └── coolstf/     # The eye-candy (pokemon.sh, cmatrix_runner.sh)
+│   ├── wallpaper/   # Beyin takımı (wp_switch.sh)
+│   ├── utils/       # İstihbarat (pokemon_theme_manager.py, renk araçları)
+│   └── coolstf/     # Göz zevki (pokemon.sh, cmatrix_runner.sh)
 ├── dotfiles/
-│   ├── matugen/     # Color generation templates
-│   ├── fastfetch/   # Fastfetch config
-│   ├── cava/        # Cava config
-│   ├── ghostty/     # Ghostty terminal config
-│   ├── nvim/        # Neovim config
-│   └── ...          # Other configs
+│   ├── matugen/     # Renk üretim şablonları
+│   ├── fastfetch/   # Fastfetch yapılandırması
+│   ├── cava/        # Cava yapılandırması
+│   ├── ghostty/     # Ghostty terminal yapılandırması
+│   ├── nvim/        # Neovim yapılandırması
+│   └── ...          # Diğer yapılandırmalar
 ```
 
-## 🛠️ Configuration & Setup
+## 🛠️ Yapılandırma & Kurulum
 
-### 1. Wallpaper Directory
-By default, the script looks for images in:
+### 1. Duvar Kağıdı Dizini
+Varsayılan olarak script şu dizindeki görsellere bakar:
 `$HOME/Pictures/Wallpapers`
 
-**To change this:**
-1.  Open `scripts/Wallpaper/wp_switch.sh`.
-2.  Edit the `WALLPAPER_DIR` variable:
+**Bunu değiştirmek için:**
+1.  `scripts/Wallpaper/wp_switch.sh` dosyasını açın.
+2.  `WALLPAPER_DIR` değişkenini düzenleyin:
     ```bash
-    WALLPAPER_DIR="/path/to/your/wallpapers"
+    WALLPAPER_DIR="/duvar/kagitlarinizin/yolu"
     ```
 
-### 2. Dependencies
-Ensure you have the following installed:
-*   **Core:** `python3`, `jq`, `bash`
-*   **Theming:** [`matugen`](https://github.com/InioX/matugen)
-*   **Wallpaper Manager:** `dms` (Internal/Custom Tool - replace with `swww` or `hyprpaper` if needed)
-*   **Hardware:** `asusctl` (Optional, for ROG laptops)
-*   **CLI Tools:**
+### 2. Gereksinimler
+Aşağıdakilerin yüklü olduğundan emin olun:
+*   **Çekirdek:** `python3`, `jq`, `bash`
+*   **Temalandırma:** [`matugen`](https://github.com/InioX/matugen)
+*   **Duvar Kağıdı Yöneticisi:** `dms` (Dahili/Özel Araç - gerekirse `swww` veya `hyprpaper` ile değiştirin)
+*   **Donanım:** `asusctl` (İsteğe bağlı, ROG laptoplar için)
+*   **CLI Araçları:**
     *   [`fastfetch`](https://github.com/fastfetch-cli/fastfetch)
     *   [`pokeget-rs`](https://github.com/talwat/pokeget-rs)
     *   [`cmatrix`](https://github.com/abishekvashok/cmatrix)
     *   [`cava`](https://github.com/karlstav/cava)
 
-### 3. Installation
-1.  **Deploy Scripts:**
+### 3. Kurulum
+1.  **Scriptleri Kopyalayın:**
     ```bash
     cp -r scripts/* ~/Scripts/
     ```
-2.  **Link Dotfiles:**
+2.  **Dotfile'ları Bağlayın (Symlink):**
     ```bash
     ln -s $(pwd)/dotfiles/* ~/.config/
     ```
-3.  **Shell Aliases:**
-    Add to `.bashrc` / `.zshrc`:
+3.  **Shell Alias'ları:**
+    `.bashrc` veya `.zshrc` dosyanıza ekleyin:
     ```bash
     alias wp='$HOME/Scripts/Wallpaper/wp_switch.sh'
     alias ff='$HOME/Scripts/Coolstf/pokemon.sh -l'
     alias matrix='$HOME/Scripts/Coolstf/cmatrix_runner.sh'
     ```
 
-## 🎮 Usage
+## 🎮 Kullanım
 
-### Changing Wallpapers (`wp`)
+### Duvar Kağıdı Değiştirme (`wp`)
 
-*   **Random Shuffle:**
-    Picks a random image from your configured `WALLPAPER_DIR`.
+*   **Rastgele Karıştır:**
+    Ayarladığınız `WALLPAPER_DIR` dizininden rastgele bir görsel seçer.
     ```bash
     wp
     ```
 
-*   **Specific Image:**
-    Sets a specific image as wallpaper and syncs the theme.
+*   **Belirli Bir Görsel:**
+    Belirli bir görseli duvar kağıdı yapar ve temayı senkronize eder.
     ```bash
-    wp /path/to/specific/image.jpg
+    wp /dosya/yolu/resim.jpg
     ```
 
-### Terminal Candy
+### Terminal Şekerlemeleri (Eye-Candy)
 
-*   **Theme-Aware Fastfetch:**
-    Shows system info with a color-matched Pokémon.
+*   **Tema-Duyarlı Fastfetch:**
+    Sistem bilgisini renk uyumlu bir Pokémon ile gösterir.
     ```bash
     ff
     ```
 
-*   **Theme-Aware Matrix:**
-    Runs the matrix rain in your theme's primary color.
+*   **Tema-Duyarlı Matrix:**
+    Matrix yağmurunu temanızın ana renginde çalıştırır.
     ```bash
     matrix
     ```
 
-## 🧠 How It Works (The "Madness")
+## 🧠 Nasıl Çalışır? (Arkaplandaki Çılgınlık)
 
-When you run `wp`, a chain reaction occurs:
+`wp` komutunu çalıştırdığınızda bir zincirleme reaksiyon başlar:
 
-1.  **Wallpaper Set:** `dms ipc` is called to update the desktop background.
-2.  **Color Extraction:** `matugen` analyzes the image and extracts the primary hex color.
-3.  **System Generation:** `matugen` generates config files for `cava`, `ghostty`, `nvim`, etc., based on templates in `~/.config/matugen/templates`.
-4.  **Hardware Sync:** If `asusctl` is present, the hex color is applied to the keyboard backlight.
-5.  **App Reload:** Signals are sent to apps like `cava` (SIGUSR1) to hot-reload their configs.
-6.  **Intelligence Update:** `pokemon_theme_manager.py` runs in the background:
-    *   It determines the color category (e.g., #FF0000 -> "Red").
-    *   It updates `~/.cache/current_theme_color.txt` with the exact hex.
-    *   It updates `~/.cache/current_theme_pokemons.txt` with a list of valid Pokémon for that color.
-7.  **Result:** The next time you run `ff` or `matrix`, they read these cache files instantly to match the new look.
+1.  **Duvar Kağıdı Ayarlanır:** Masaüstü arka planını güncellemek için `dms ipc` çağrılır.
+2.  **Renk Analizi:** `matugen` görseli analiz eder ve ana hex kodunu çıkarır.
+3.  **Sistem Üretimi:** `matugen`, `~/.config/matugen/templates` içindeki şablonlara dayanarak `cava`, `ghostty`, `nvim` vb. için yapılandırma dosyalarını oluşturur.
+4.  **Donanım Senkronizasyonu:** Eğer `asusctl` mevcutsa, hex kodu klavye arka ışığına uygulanır.
+5.  **Uygulama Yenileme:** `cava` gibi uygulamalara yapılandırmalarını yeniden yüklemeleri için sinyaller (SIGUSR1) gönderilir.
+6.  **Akıllı Güncelleme:** `pokemon_theme_manager.py` arka planda çalışır:
+    *   Renk kategorisini belirler (Örn: #FF0000 -> "Red").
+    *   `~/.cache/current_theme_color.txt` dosyasını tam hex koduyla günceller.
+    *   `~/.cache/current_theme_pokemons.txt` dosyasını o renge uygun Pokémon listesiyle günceller.
+7.  **Sonuç:** Bir sonraki `ff` veya `matrix` çalıştırışınızda, bu önbellek dosyaları anında okunur ve yeni görünüme uyum sağlanır.
