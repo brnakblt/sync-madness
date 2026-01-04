@@ -52,12 +52,17 @@ Varsayılan olarak script şu dizindeki görsellere bakar:
 
 ### 2. Gereksinimler
 *   **Temel:** `dms` (Sisteminizde kurulu olmalıdır)
-*   **Bagimliliklar:** `python3`, `jq`, `matugen`, `fastfetch`, `pokeget`, `cmatrix`, `cava` (Otomatik kurulur)
-*   **Opsiyonel:** `asusctl` (ROG laptoplar icin)
+*   **Pacman ile Kurulanlar:** `python`, `jq`, `fastfetch`, `cmatrix`, `cava`
+*   **AUR'dan Kurulanlar:** `matugen-bin`
+*   **Opsiyonel / Onerilen:** `pokeget` (Script, Cargo ile kurmayi onerir)
 
 ### 3. Kurulum (Otomatik)
 
-En kolay kurulum icin repo icindeki scripti calistirin. Bu script bagimliliklari kuracak, scriptleri yerlestirecek ve ayarlari yapacaktir.
+En kolay kurulum icin repo icindeki scripti calistirin. Bu script:
+1.  Resmi paketleri `pacman` ile kurar.
+2.  `matugen`i AUR yardimcinizla (`yay` veya `paru`) kurar.
+3.  `pokeget`i Cargo ile kurmak isteyip istemediginizi sorar (Onerilir).
+4.  Scriptleri yerlestirir ve ayarlari yapar.
 
 > **Onemli:** Bu paketi kurmadan once `dms` kurulumunu tamamlamis olmaniz onerilir.
 
