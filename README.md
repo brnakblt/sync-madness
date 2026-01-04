@@ -1,89 +1,119 @@
 # Sync-Madness: Theme Synchronization Suite
 
-This repository contains a set of scripts and configuration files to achieve a fully theme-responsive Linux environment. The system automatically extracts colors from your current wallpaper and applies them to various CLI tools and applications in real-time.
+**Sync-Madness** is a comprehensive automation suite for Linux that synchronizes your entire system's theme to your wallpaper in real-time. It leverages `matugen` to extract colors and applies them across your window manager, terminal, CLI tools, and even your keyboard lighting.
 
-## Features
+## 🚀 Features
 
-- **Wallpaper & Color Management:** Automatically extracts the primary color from the wallpaper using `matugen`.
-- **Terminal Integration:**
-  - **Fastfetch (`ff`):** Displays a random Pokémon that matches your current wallpaper color.
-  - **Matrix (`matrix`):** Runs `cmatrix` with the color closest to your wallpaper.
-- **Application Sync:**
-  - **Cava:** Audio visualizer colors are updated.
-  - **Ghostty:** Terminal emulator config sync.
-  - **Nvim & Yazi:** Theme integration.
-  - **Niri:** Window manager theming.
+*   **Dynamic Wallpaper Engine:** Switches wallpapers and instantly triggers system-wide theme updates.
+*   **Terminal Sync:**
+    *   **Fastfetch (`ff`):** Displays a random Pokémon that matches your wallpaper's color scheme (e.g., Red wallpaper -> Charizard).
+    *   **Matrix (`matrix`):** Runs `cmatrix` with the color closest to your wallpaper.
+*   **App Integration:**
+    *   **Cava:** Audio visualizer colors are hot-reloaded.
+    *   **Ghostty:** Terminal emulator config sync.
+    *   **Nvim & Yazi:** Editor and file manager theme integration.
+    *   **Niri:** Window manager border and UI coloring.
+    *   **ASUS ROG:** Keyboard Aura sync (via `asusctl`).
 
-## Directory Structure
+## 📂 Directory Structure
 
-```
+```text
 ├── scripts/
-│   ├── wallpaper/   # Wallpaper switching logic (wp_switch.sh)
-│   ├── utils/       # Color analysis and cache managers (pokemon_theme_manager.py)
-│   └── coolstf/     # Fun CLI tools (pokemon.sh, cmatrix_runner.sh)
+│   ├── wallpaper/   # The brain (wp_switch.sh)
+│   ├── utils/       # The intelligence (pokemon_theme_manager.py, color tools)
+│   └── coolstf/     # The eye-candy (pokemon.sh, cmatrix_runner.sh)
 ├── dotfiles/
 │   ├── matugen/     # Color generation templates
 │   ├── fastfetch/   # Fastfetch config
 │   ├── cava/        # Cava config
 │   ├── ghostty/     # Ghostty terminal config
 │   ├── nvim/        # Neovim config
-│   ├── yazi/        # File manager config
-│   └── niri/        # Window manager config
+│   └── ...          # Other configs
 ```
 
-## Dependencies
+## 🛠️ Configuration & Setup
 
+### 1. Wallpaper Directory
+By default, the script looks for images in:
+`$HOME/Pictures/Wallpapers`
+
+**To change this:**
+1.  Open `scripts/Wallpaper/wp_switch.sh`.
+2.  Edit the `WALLPAPER_DIR` variable:
+    ```bash
+    WALLPAPER_DIR="/path/to/your/wallpapers"
+    ```
+
+### 2. Dependencies
 Ensure you have the following installed:
-
 *   **Core:** `python3`, `jq`, `bash`
 *   **Theming:** [`matugen`](https://github.com/InioX/matugen)
-*   **Wallpaper Manager:** `dms` (Internal/Custom Tool)
+*   **Wallpaper Manager:** `dms` (Internal/Custom Tool - replace with `swww` or `hyprpaper` if needed)
+*   **Hardware:** `asusctl` (Optional, for ROG laptops)
 *   **CLI Tools:**
     *   [`fastfetch`](https://github.com/fastfetch-cli/fastfetch)
     *   [`pokeget-rs`](https://github.com/talwat/pokeget-rs)
     *   [`cmatrix`](https://github.com/abishekvashok/cmatrix)
     *   [`cava`](https://github.com/karlstav/cava)
 
-## Installation & Setup
-
-1.  **Copy Scripts:**
-    Move the `scripts` folder to `~/Scripts` (or your preferred location).
+### 3. Installation
+1.  **Deploy Scripts:**
     ```bash
     cp -r scripts/* ~/Scripts/
     ```
-
-2.  **Symlink Dotfiles:**
-    Link the configurations to `~/.config/`.
+2.  **Link Dotfiles:**
     ```bash
     ln -s $(pwd)/dotfiles/* ~/.config/
     ```
-
-3.  **Setup Aliases:**
-    Add the following to your shell configuration (`.bashrc` or `.zshrc`):
-
+3.  **Shell Aliases:**
+    Add to `.bashrc` / `.zshrc`:
     ```bash
-    # Wallpaper Switching
     alias wp='$HOME/Scripts/Wallpaper/wp_switch.sh'
-    
-    # Theme-Synced Fastfetch
     alias ff='$HOME/Scripts/Coolstf/pokemon.sh -l'
-    
-    # Theme-Synced Matrix
     alias matrix='$HOME/Scripts/Coolstf/cmatrix_runner.sh'
     ```
 
-## How It Works
+## 🎮 Usage
 
-1.  **Trigger:** You run `wp <image_path>` or just `wp` (random).
-2.  **Process (`wp_switch.sh`):**
-    *   Sets wallpaper via `dms`.
-    *   Generates colors via `matugen`.
-    *   Reloads `cava`.
-    *   Calls `pokemon_theme_manager.py`.
-3.  **Update (`pokemon_theme_manager.py`):**
-    *   Detects the new wallpaper color.
-    *   Updates `~/.cache/current_theme_color.txt` (Hex code).
-    *   Updates `~/.cache/current_theme_pokemons.txt` (List of matching Pokemon).
-4.  **Display:**
-    *   `ff`: Reads the cached Pokemon list and color, prints a matching Pokemon in the correct color.
-    *   `matrix`: Reads the cached color, finds the closest `cmatrix` supported color, and launches it.
+### Changing Wallpapers (`wp`)
+
+*   **Random Shuffle:**
+    Picks a random image from your configured `WALLPAPER_DIR`.
+    ```bash
+    wp
+    ```
+
+*   **Specific Image:**
+    Sets a specific image as wallpaper and syncs the theme.
+    ```bash
+    wp /path/to/specific/image.jpg
+    ```
+
+### Terminal Candy
+
+*   **Theme-Aware Fastfetch:**
+    Shows system info with a color-matched Pokémon.
+    ```bash
+    ff
+    ```
+
+*   **Theme-Aware Matrix:**
+    Runs the matrix rain in your theme's primary color.
+    ```bash
+    matrix
+    ```
+
+## 🧠 How It Works (The "Madness")
+
+When you run `wp`, a chain reaction occurs:
+
+1.  **Wallpaper Set:** `dms ipc` is called to update the desktop background.
+2.  **Color Extraction:** `matugen` analyzes the image and extracts the primary hex color.
+3.  **System Generation:** `matugen` generates config files for `cava`, `ghostty`, `nvim`, etc., based on templates in `~/.config/matugen/templates`.
+4.  **Hardware Sync:** If `asusctl` is present, the hex color is applied to the keyboard backlight.
+5.  **App Reload:** Signals are sent to apps like `cava` (SIGUSR1) to hot-reload their configs.
+6.  **Intelligence Update:** `pokemon_theme_manager.py` runs in the background:
+    *   It determines the color category (e.g., #FF0000 -> "Red").
+    *   It updates `~/.cache/current_theme_color.txt` with the exact hex.
+    *   It updates `~/.cache/current_theme_pokemons.txt` with a list of valid Pokémon for that color.
+7.  **Result:** The next time you run `ff` or `matrix`, they read these cache files instantly to match the new look.
