@@ -60,7 +60,7 @@ if command -v spicetify >/dev/null; then
         # nohup spotify-launcher &>/dev/null &
     else
         # Force a change in user.css to trigger re-read
-        echo "/* Reload $(date +%s) */" >> "$HOME/.config/spicetify/Themes/Matugen/user.css"
+        echo "/* Reload $(date +%s) */" >> "$HOME/.spicetify/Themes/Matugen/user.css"
         
         # Only refresh if Spotify is running
         if pgrep -x "spotify" > /dev/null; then
