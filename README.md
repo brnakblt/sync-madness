@@ -19,6 +19,7 @@ Bu paketin calismasi icin **DankMaterialShell (DMS)** sisteminizde kurulu olmali
     *   **Ghostty:** Terminal emülatörü yapılandırma senkronizasyonu.
     *   **Nvim & Yazi:** Editör ve dosya yöneticisi tema entegrasyonu.
     *   **Niri:** Pencere yöneticisi kenarlık ve arayüz renklendirmesi.
+    *   **Spicetify:** Spotify tema renkleri duvar kâğıdı ile senkronize olur (Matugen teması ile).
     *   **ASUS ROG:** Klavye Aura senkronizasyonu (`asusctl` ile).
 
 ## Dizin Yapisi

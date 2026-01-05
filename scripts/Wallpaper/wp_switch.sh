@@ -41,6 +41,14 @@ if command -v matugen >/dev/null; then
     fi
 fi
 
+# Spicetify Update
+if command -v spicetify >/dev/null; then
+    # Set theme to Matugen if not already (fast operation)
+    spicetify config current_theme Matugen color_scheme dynamic >/dev/null 2>&1
+    # Apply changes (backgrounded to avoid blocking)
+    spicetify apply -n >/dev/null 2>&1 &
+fi
+
 # Cava hot reload (SIGUSR1 veya SIGUSR2)
 pkill -USR1 cava 2>/dev/null
 

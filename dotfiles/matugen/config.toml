@@ -9,3 +9,8 @@ output_path = "/home/baran/.config/nvim/lua/matugen_theme.lua"
 [templates.cava]
 input_path = "/home/baran/.config/matugen/templates/cava.template"
 output_path = "/home/baran/.config/cava/themes/matugen"
+
+[templates.spicetify]
+input_path = "~/.config/matugen/templates/spicetify.ini"
+output_path = "~/.config/spicetify/Themes/Matugen/color.ini"
+
