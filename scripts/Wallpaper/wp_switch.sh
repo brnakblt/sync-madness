@@ -48,17 +48,24 @@ if command -v spicetify >/dev/null; then
     # Ensure color.ini is written
     sleep 0.5
     
-    # Force a change in user.css to trigger re-read
-    echo "/* Reload $(date +%s) */" >> "$HOME/.config/spicetify/Themes/Matugen/user.css"
-    
-    # Check if current theme is Matugen
     CURRENT_THEME=$(spicetify config current_theme 2>/dev/null)
+    
     if [ "$CURRENT_THEME" != "Matugen" ]; then
+        echo "Applying Matugen theme for the first time..."
+        # If theme is changing, we often need a full restart to be safe
+        pkill -x spotify 2>/dev/null
         spicetify config current_theme Matugen color_scheme dynamic inject_css 1 inject_theme_js 1 replace_colors 1 >/dev/null 2>&1
         spicetify apply -n
+        # Start spotify again if it was killed
+        # nohup spotify-launcher &>/dev/null &
     else
-        # Use refresh for hot-reloading colors
-        spicetify refresh -n
+        # Force a change in user.css to trigger re-read
+        echo "/* Reload $(date +%s) */" >> "$HOME/.config/spicetify/Themes/Matugen/user.css"
+        
+        # Only refresh if Spotify is running
+        if pgrep -x "spotify" > /dev/null; then
+             spicetify refresh -n
+        fi
     fi
 fi
 
