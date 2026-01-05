@@ -43,10 +43,14 @@ fi
 
 # Spicetify Update
 if command -v spicetify >/dev/null; then
-    # Set theme to Matugen if not already (fast operation)
-    spicetify config current_theme Matugen color_scheme dynamic >/dev/null 2>&1
-    # Apply changes (backgrounded to avoid blocking)
-    spicetify apply -n >/dev/null 2>&1 &
+    # Check if current theme is already Matugen to avoid redundant writes
+    CURRENT_THEME=$(spicetify config current_theme 2>/dev/null)
+    if [ "$CURRENT_THEME" != "Matugen" ]; then
+        spicetify config current_theme Matugen color_scheme dynamic >/dev/null 2>&1
+    fi
+    
+    # 'refresh' is faster than 'apply' for just CSS/color changes
+    spicetify refresh -n >/dev/null 2>&1 &
 fi
 
 # Cava hot reload (SIGUSR1 veya SIGUSR2)
