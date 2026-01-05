@@ -48,14 +48,18 @@ if command -v spicetify >/dev/null; then
     # Ensure color.ini is written
     sleep 0.5
     
-    # Check if current theme is already Matugen
+    # Force a change in user.css to trigger re-read
+    echo "/* Reload $(date +%s) */" >> "$HOME/.config/spicetify/Themes/Matugen/user.css"
+    
+    # Check if current theme is Matugen
     CURRENT_THEME=$(spicetify config current_theme 2>/dev/null)
-    
-    # Always config just in case
-    spicetify config current_theme Matugen color_scheme dynamic inject_css 1 inject_theme_js 1 replace_colors 1 >/dev/null 2>&1
-    
-    # Using 'apply' instead of 'refresh' because refresh can be flaky with color updates
-    spicetify apply -n
+    if [ "$CURRENT_THEME" != "Matugen" ]; then
+        spicetify config current_theme Matugen color_scheme dynamic inject_css 1 inject_theme_js 1 replace_colors 1 >/dev/null 2>&1
+        spicetify apply -n
+    else
+        # Use refresh for hot-reloading colors
+        spicetify refresh -n
+    fi
 fi
 
 # Cava hot reload (SIGUSR1 veya SIGUSR2)
