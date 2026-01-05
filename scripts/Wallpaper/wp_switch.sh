@@ -43,16 +43,18 @@ fi
 
 # Spicetify Update
 if command -v spicetify >/dev/null; then
+    echo "Updating Spicetify..."
     # Check if current theme is already Matugen
     CURRENT_THEME=$(spicetify config current_theme 2>/dev/null)
     if [ "$CURRENT_THEME" != "Matugen" ]; then
         # Theme changed: Must use APPLY
-        # Also ensure CSS injection is enabled for custom themes
-        spicetify config current_theme Matugen color_scheme dynamic inject_css 1 inject_theme_js 1 replace_colors 1 >/dev/null 2>&1
-        spicetify apply -n >/dev/null 2>&1 &
+        echo "Switching to Matugen theme..."
+        spicetify config current_theme Matugen color_scheme dynamic >/dev/null 2>&1
+        spicetify apply -n
     else
         # Theme same: Use REFRESH for speed
-        spicetify refresh -n >/dev/null 2>&1 &
+        echo "Refreshing Spicetify colors..."
+        spicetify refresh -n
     fi
 fi
 
